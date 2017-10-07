@@ -13,6 +13,8 @@ import {
   View,
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 class Login extends Component {
   constructor(){
     super();
@@ -22,7 +24,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.noInfo = this.noInfo.bind(this);
     this.clearInfo = this.clearInfo.bind(this);
-    this.collapseKeyboard = this.collapseKeyboard.bind(this);
+    this.scrollToInput = this.scrollToInput.bind(this);
   };
 
   handleSubmit() {
@@ -34,7 +36,6 @@ class Login extends Component {
   };
 
   noInfo() {
-    console.log('no user input');
     Alert.alert('You need to input an EMPLOYEE ID and PASSWORD')
   };
 
@@ -45,40 +46,45 @@ class Login extends Component {
     })
   };
 
-  collapseKeyboard(event) {
-    console.log(event);
-  }
+  scrollToInput (reactNode: any) {
+  this.refs.scroll.scrollToFocusedInput(reactNode)
+}
 
   render() {
+
+    const mockButton = <Button onPress={ this.handleSubmit } title='Submit'/>;
+
     const submitButton =
       this.state.employee.length ?
-        <Button styles={ styles.yesSubmit } onPress={ this.handleSubmit } title='Submit'/> :
-        <Button styles={ styles.noSubmit } onPress={ this.noInfo } title='Submit'/>;
+        <Button onPress={ this.handleSubmit } title='Submit'/> :
+        <Button onPress={ this.noInfo } title='Submit'/>;
     return(
-      <View style={ styles.question }>
-        <Text style={ styles.prompt }>EMPLOYEE ID</Text>
-        <TextInput
-          style={ styles.input }
-          onSubmitEditing={ Keyboard.dismiss() }
-          multiline= { true }
-          placeholder='Employe ID'
-          onChangeText={ (employee) => this.setState({ employee })}
-          value={ this.state.employee } />
-
-          <Text style={ styles.prompt }>PASSWORD</Text>
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        scrollEnabled={false}>
+        <View style={ styles.question }>
+          <Text style={ styles.prompt }>EMPLOYEE ID</Text>
           <TextInput
             style={ styles.input }
-            onSubmit={ Keyboard.dismiss }
-            multiline={ true }
-            placeholder='Password'
-            onChangeText={ (password) => this.setState({ password })}
-            secureTextEntry={true}
-            value={ this.state.password } />
-          <View style={ styles.buttons }>
-            {submitButton}
-            <Button onPress={ this.clearInfo } title='Clear'/>
-          </View>
-      </View>
+            multiline= { true }
+            placeholder='Employe ID'
+            onChangeText={ (employee) => this.setState({ employee })}
+            value={ this.state.employee } />
+
+            <Text style={ styles.prompt }>PASSWORD</Text>
+            <TextInput
+              style={ styles.input }
+              multiline={ true }
+              placeholder='Password'
+              onChangeText={ (password) => this.setState({ password })}
+              secureTextEntry={true}
+              value={ this.state.password } />
+            <View style={ styles.buttons }>
+              {mockButton}
+              <Button onPress={ this.clearInfo } title='Clear'/>
+            </View>
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 };
