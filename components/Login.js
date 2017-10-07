@@ -29,10 +29,6 @@ class Login extends Component {
 
   handleSubmit() {
     this.props.submitLogin(this.state.employee)
-    this.setState({
-      employee: '',
-      password: ''
-    })
   };
 
   noInfo() {
@@ -61,7 +57,8 @@ class Login extends Component {
     return(
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
-        scrollEnabled={false}>
+        scrollEnabled={ true }
+        contentContainerStyle={ styles.display }>
         <View style={ styles.question }>
           <Text style={ styles.prompt }>EMPLOYEE ID</Text>
           <TextInput
@@ -90,10 +87,27 @@ class Login extends Component {
 };
 
 const styles = StyleSheet.create({
-  question: {
+  buttons: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 70,
+    justifyContent: 'space-around'
+  },
+  display: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: 15,
+    height: '100%',
+    width: '100%',
+  },
+  input: {
+    backgroundColor: '#CED5E0',
+    color: '#122732',
+    fontSize: 20,
+    height: 40,
+    marginBottom: 10,
+    padding: 5,
+    width: 250,
   },
   prompt: {
     backgroundColor: '#C4900F',
@@ -103,19 +117,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: 250,
   },
-  input: {
-    backgroundColor: '#BBBBDD',
-    color: '#122732',
-    fontSize: 20,
-    height: 50,
-    marginBottom: 10,
-    padding: 5,
-    width: 250,
-  },
-  buttons: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around'
-  },
+
 });
 export default Login;
