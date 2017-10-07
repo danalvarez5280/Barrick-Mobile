@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, AppRegistry, Image } from 'react-native';
 import Login from './components/Login';
 import Question1 from './components/Question1';
-import logo from './assets/logo.png';
+import logo from './components/assets/logo.png';
 
 export default class App extends React.Component {
   constructor() {
@@ -22,10 +22,21 @@ export default class App extends React.Component {
     })
   };
 
-  q1Submit(taskType, specificTask) {
+  q1Submit(inuput) {
     this.setState({
-      taskType: taskType,
-      specificTask: specificTask
+      taskType: input.taskType,
+      specificTask: input.specificTask,
+      question1: false,
+      quesiton2: true,
+    })
+  };
+
+  q2Submit(input) {
+    this.setState({
+      riskLevel: input.riskLevel,
+      specificRisk: input.specificRisk,
+      question2: false,
+      qustion3: true,
     })
   };
 
@@ -47,6 +58,14 @@ export default class App extends React.Component {
         {
           this.state.question1 &&
           <Question1 submitLogin={this.q1Submit} />
+        }
+        {
+          this.state.question2 &&
+          <Question2 submitLogin={this.q2Submit} />
+        }
+        {
+          this.state.question3 &&
+          <Text>Question 3 goes here</Text>
         }
       </View>
     );
