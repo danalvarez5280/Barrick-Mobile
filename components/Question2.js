@@ -36,7 +36,7 @@ class Question2 extends Component {
 
   render() {
     const submitButton =
-      this.state.specificTask.length ?
+      this.state.specificRisk.length ?
         <Button onPress={ this.handleSubmit } title='Submit'/> :
         <Button onPress={ this.noInfo } title='Submit'/>;
     return(
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Question1;
+export default Question2;

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar, AppRegistry, Image } from 'react-native';
 import Login from './components/Login';
 import Question1 from './components/Question1';
+import Question2 from './components/Question2';
+
+// import Question2 from './components/Question2';
 import logo from './components/assets/logo.png';
 
 export default class App extends React.Component {
@@ -18,16 +21,15 @@ export default class App extends React.Component {
     this.setState({
       employeeId: employee,
       loggedIn: true,
-      question1: true,
+      question: 1,
     })
   };
 
-  q1Submit(inuput) {
+  q1Submit(input) {
     this.setState({
       taskType: input.taskType,
       specificTask: input.specificTask,
-      question1: false,
-      quesiton2: true,
+      question: 2,
     })
   };
 
@@ -42,13 +44,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={ styles.container }>
       <StatusBar barStyle='light-content'/>
         <View style={styles.header}>
-          <Image source={logo} style={styles.logo}/>
+          <Image source={logo} style={ styles.logo }/>
           <View>
-            <Text style={styles.gold}>Employeed Id</Text>
-            <Text style={styles.gold}>Site Id</Text>
+          {
+            this.state.loggedIn &&
+            <Text style={ styles.gold }>{ this.state.employeeId }</Text>
+          }
+          <Text style={ styles.gold }>Site Id</Text>
           </View>
         </View>
         {
@@ -56,15 +61,15 @@ export default class App extends React.Component {
           <Login submitLogin={this.submitLogin} />
         }
         {
-          this.state.question1 &&
+          this.state.question === 1 &&
           <Question1 submitLogin={this.q1Submit} />
         }
         {
-          this.state.question2 &&
+          this.state.question === 2 &&
           <Question2 submitLogin={this.q2Submit} />
         }
         {
-          this.state.question3 &&
+          this.state.question === 3 &&
           <Text>Question 3 goes here</Text>
         }
       </View>
