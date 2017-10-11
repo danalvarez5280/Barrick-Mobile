@@ -17,7 +17,7 @@ import CheckBox from 'react-native-checkbox';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import SafetyBox from './SafetyBox'
+import SafetyBox from './SafetyBox';
 
 //colors
 // gold #C4900F
@@ -37,6 +37,10 @@ class Question4 extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
+  controlsChecked() {
+    this.props.controlsChecked()
+  };
+
   goBack() {
     this.props.goBack(3);
   };
@@ -48,6 +52,17 @@ class Question4 extends Component {
   noInfo() {
     Alert.alert('You need to input a CHECK ALL SAFETY MEASURES')
   };
+
+  // safetyCheck() {
+  //   let checks = this.state.checkList;
+  //   const safetyChecks = checks.map((check, index) =>
+  //     if(check === (<SafetyBox key={ index } safeCheck={ check } checked={ true } />)) {
+  //       console.log('checks passed');
+  //       controlsChecked()
+  //     }
+  //   );
+  // 
+  // }
 
   render() {
     console.log('props4', this.state.checkList);

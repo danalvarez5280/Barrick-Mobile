@@ -26,15 +26,23 @@ export default class App extends React.Component {
       specificSafetyMeasures: '',
       specificTask: '',
       taskType: '',
+      whatConcernLevel:'',
     }
-    this.submitLogin = this.submitLogin.bind(this);
-    this.setControls = this.setControls.bind(this);
+    this.controlsChecked = this.controlsChecked.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.setControls = this.setControls.bind(this);
+    this.submitLogin = this.submitLogin.bind(this);
     this.q1Submit = this.q1Submit.bind(this);
     this.q2Submit = this.q2Submit.bind(this);
     this.q3Submit = this.q3Submit.bind(this);
     this.q4Submit = this.q4Submit.bind(this);
   };
+
+  controlsChecked(){
+    this.setState({
+      checkedControls: true,
+    })
+  }
 
   goBack(num) {
     this.setState({
@@ -75,6 +83,7 @@ export default class App extends React.Component {
   q3Submit(input) {
     this.setState({
       potentialInjuries: input.potentialInjuries,
+      whatConcernLevel: input.whatConcernLevel,
       specificConcerns: input.specificConcerns,
       question: 4,
     })
@@ -138,6 +147,7 @@ export default class App extends React.Component {
             this.state.question === 4 &&
             <Question4
               submitLogin={ this.q4Submit }
+              controlsChecked={ this.controlsChecked }
               goBack={ this.goBack }
               info = { this.state }/>
           }

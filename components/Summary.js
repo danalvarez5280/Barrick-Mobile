@@ -15,6 +15,25 @@ import {
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import SafetyBox from './SafetyBox';
+
+import risk1 from './assets/secure.png';
+import risk2 from './assets/caution.png';
+import risk3 from './assets/siren.png';
+import risk4 from './assets/death.png';
+import risk5 from './assets/biohazard.png';
+
+import concern1 from './assets/injury1.png';
+import concern2 from './assets/injury2.png';
+import concern3 from './assets/injury3.png';
+import concern4 from './assets/injury4.png';
+import concern5 from './assets/injury5.png';
+import concern6 from './assets/injury6.png';
+
+import wrenchGold  from './assets/wrench-gold.png';
+import truckGold from './assets/truck-gold.png';
+import lightGold from './assets/light-gold.png';
+
 
 //colors
 // gold #C4900F
@@ -28,27 +47,57 @@ class Summary extends Component {
     this.state = {
       info: props.info,
     }
+    this.goBack = this.goBack.bind(this);
+    this.testFn = this.testFn.bind(this);
+  };
+
+  testFn() {
+    console.log('hi dan');
+  };
+
+  goBack() {
+    this.props.goBack(4);
   };
 
   render() {
-    console.log('props4', this.state.checkList);
-    let checks = this.state.checkList;
-    const safetyChecks = checks.map((check, index) =>
+    let check = 'Bender Is Great';
+    let safetyChecks =
       <SafetyBox
-        key={ index }
-        safeCheck={ check } />
-    );
-
+        safeCheck={ check }
+        checked={ false } />
     return(
       <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={ true }
         contentContainerStyle={ styles.display }>
         <View style={styles.question}>
-          <Text style={ styles.prompt }>Safety Measure Checklist</Text>
-          <View style={ styles.list }>
-          { safetyChecks }
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Task Type:</Text>
+            <Image source={ lightGold } style={ styles.checkBox }/>
           </View>
-          <Button onPress={ this.handleSubmit } title='SUBMIT'/>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Specific Task:</Text>
+            <Text style={ styles.white }>{ this.props.info.specificTask }</Text>
+          </View>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Risk Level:</Text>
+            <Image source={ risk1 } style={ styles.checkBox }/>
+          </View>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Specific Risk:</Text>
+            <Text style={ styles.white }>{ this.props.info.specificRisk }</Text>
+          </View>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Concerns:</Text>
+            <Image source={ concern1 } style={ styles.checkBox }/>
+            <Text style={ styles.white }>{ this.props.info.whatConcernLevel }</Text>
+          </View>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>Specific Concerns:</Text>
+            <Text style={ styles.white }>{ this.props.info.specificConcerns }</Text>
+          </View>
+
+          <Button onPress={ this.testFn } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
         </View>
       </KeyboardAwareScrollView>
@@ -56,53 +105,43 @@ class Summary extends Component {
   }
 };
 const styles = StyleSheet.create({
+  blue: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 40,
+    marginTop: 10,
+    padding: 5,
+    width: 220,
+  },
+  checkBox: {
+    height: 24,
+    width: 24,
+  },
   display: {
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     marginTop: 10,
-    padding: 0,
+    paddingBottom: 20,
     height: '100%',
     width: '100%',
-  },
-  input: {
-    backgroundColor: '#CED5E0',
-    color: '#122732',
-    fontSize: 20,
-    height: 100,
-    marginBottom: 10,
-    padding: 5,
-    width: 250,
-  },
-  list: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 10,
   },
   question: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     marginTop: 0,
   },
-  prompt: {
-    backgroundColor: '#C4900F',
+  white: {
     color: '#122732',
+    fontSize: 12,
     fontWeight: 'bold',
-    padding: 5,
-    textAlign: 'center',
-    width: 250,
+    marginLeft: 20,
   },
-  riskIcon: {
-    height: 80,
-    margin: 15,
-    width: 80,
-  },
-  slider: {
-    width: 200
-  }
 });
 
 export default Summary;
