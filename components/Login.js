@@ -48,15 +48,14 @@ class Login extends Component {
 
   render() {
 
-    const mockButton = <Button onPress={ this.handleSubmit } title='Submit'/>;
+    const mockButton = <Button onPress={ this.handleSubmit } title='MOCK'/>;
 
     const submitButton =
       this.state.employee.length ?
-        <Button onPress={ this.handleSubmit } title='Submit'/> :
-        <Button onPress={ this.noInfo } title='Submit'/>;
+        <Button onPress={ this.handleSubmit } title='SUBMIT'/> :
+        <Button onPress={ this.noInfo } title='Enter ID'/>;
     return(
       <KeyboardAwareScrollView
-        resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={ true }
         contentContainerStyle={ styles.display }>
         <View style={ styles.question }>
@@ -74,11 +73,11 @@ class Login extends Component {
               multiline={ true }
               placeholder='Password'
               onChangeText={ (password) => this.setState({ password })}
-              secureTextEntry={true}
+              secureTextEntry={ true }
               value={ this.state.password } />
             <View style={ styles.buttons }>
-              {mockButton}
-              <Button onPress={ this.clearInfo } title='Clear'/>
+              {submitButton}
+              <Button onPress={ this.clearInfo } title='CLEAR'/>
             </View>
         </View>
       </KeyboardAwareScrollView>

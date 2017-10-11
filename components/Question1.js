@@ -9,12 +9,6 @@ import lightGold from './assets/light-gold.png';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-//colors
-// gold #C4900F
-// blue #122732
-//off white #CED5E0
-// off blue #324A5E
-
 import {
   Alert,
   AppRegistry,
@@ -31,11 +25,11 @@ import {
 } from 'react-native';
 
 class Question1 extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      taskType: '',
-      specificTask: ''
+      taskType: props.info.taskType,
+      specificTask: props.info.specificTask
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.noInfo = this.noInfo.bind(this);
@@ -43,7 +37,6 @@ class Question1 extends Component {
   }
 
   handleSubmit() {
-    console.log('hi everybody');
     this.props.submitLogin(this.state)
   };
 
@@ -55,8 +48,21 @@ class Question1 extends Component {
     this.setState({
       taskType: type,
     })
-    console.log(this.state.taskType);
+
+    if(type === 'Electrical') {
+      this.setChecks(['Lock Out/ Tag Out', 'Locks'])
+    }
+    else if( type === 'Transportation') {
+      this.setChecks(['Pre-Start Check', 'Seat Belts', 'Tires', 'Horn', 'Head Lights'])
+    }
+    else if( type === 'Maintenence') {
+      this.setChecks(['Safety Gear', 'Buddy System'])
+    }
   };
+
+  setChecks(array) {
+    this.props.setControls(array)
+  }
 
   render() {
     const transportation = this.state.taskType === 'Transportation' ? truckGold : truck;
@@ -68,7 +74,6 @@ class Question1 extends Component {
         <Button style={ styles.noSubmit } onPress={ this.noInfo } title='Submit'/>;
     return(
       <KeyboardAwareScrollView
-        resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={ true }
         contentContainerStyle={ styles.display }>
         <View style={ styles.question } >
@@ -99,9 +104,9 @@ class Question1 extends Component {
             style={ styles.input }
             multiline= { true }
             placeholder='Specific Task'
-            onChangeText={ (employee) => this.setState({ employee })}
-            value={ this.state.employee } />
-          <Button onPress={ this.handleSubmit } title='Submit'/>
+            onChangeText={ (specificTask) => this.setState({ specificTask })}
+            value={ this.state.specificTask } />
+          <Button onPress={ this.handleSubmit } title='SUBMIT'/>
         </View>
       </KeyboardAwareScrollView>
     )
@@ -112,7 +117,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: 15,
     height: '100%',
     width: '100%',
   },
