@@ -46,6 +46,7 @@ class Question4 extends Component {
   };
 
   handleSubmit() {
+    this.controlsChecked()
     this.props.submitLogin(this.state);
   };
 
@@ -53,25 +54,13 @@ class Question4 extends Component {
     Alert.alert('You need to input a CHECK ALL SAFETY MEASURES')
   };
 
-  // safetyCheck() {
-  //   let checks = this.state.checkList;
-  //   const safetyChecks = checks.map((check, index) =>
-  //     if(check === (<SafetyBox key={ index } safeCheck={ check } checked={ true } />)) {
-  //       console.log('checks passed');
-  //       controlsChecked()
-  //     }
-  //   );
-  // 
-  // }
-
   render() {
-    console.log('props4', this.state.checkList);
     let checks = this.state.checkList;
     const safetyChecks = checks.map((check, index) =>
       <SafetyBox
         key={ index }
         safeCheck={ check }
-        checked={ false } />
+        checked={ this.state.checkedControls } />
     );
 
     return(
@@ -83,7 +72,7 @@ class Question4 extends Component {
           <View style={ styles.list }>
           { safetyChecks }
           </View>
-          <Text style={ styles.prompt }>Specific Concerns</Text>
+          <Text style={ styles.prompt }>Specific Safety Measures</Text>
           <TextInput
             style={ styles.input }
             multiline= { true }

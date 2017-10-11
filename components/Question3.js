@@ -46,6 +46,7 @@ class Question3 extends Component {
   };
 
   handleSubmit() {
+    console.log('specificConcerns', this.state);
     this.props.submitLogin(this.state)
   };
 

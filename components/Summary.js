@@ -96,6 +96,9 @@ class Summary extends Component {
             <Text style={ styles.white }>Specific Concerns:</Text>
             <Text style={ styles.white }>{ this.props.info.specificConcerns }</Text>
           </View>
+          <View style={ styles.blue }>
+            <Text style={ styles.white }>{ this.props.info.specificSafetyMeasures }</Text>
+          </View>
 
           <Button onPress={ this.testFn } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
@@ -109,11 +112,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     height: 40,
     marginTop: 10,
     padding: 5,
-    width: 220,
   },
   checkBox: {
     height: 24,
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     marginTop: 0,
+    width: '100%',
   },
   white: {
     color: '#122732',
