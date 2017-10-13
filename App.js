@@ -20,6 +20,7 @@ export default class App extends React.Component {
       employeeId: '',
       loggedIn: false,
       potentialInjuries: 1,
+      questions: {},
       riskLevel: 1,
       specificConcerns: '',
       specificRisk: '',
@@ -36,6 +37,7 @@ export default class App extends React.Component {
     this.q2Submit = this.q2Submit.bind(this);
     this.q3Submit = this.q3Submit.bind(this);
     this.q4Submit = this.q4Submit.bind(this);
+    this.sendToDatabase = this.sendToDatabase.bind(this);
   };
 
   controlsChecked(){
@@ -69,6 +71,11 @@ export default class App extends React.Component {
       taskType: input.taskType,
       specificTask: input.specificTask,
       question: 2,
+      questions: Object.assign(
+        {},
+        this.state.questions,
+        {'WorkerId': this.state.employeeId, 'Supervisor': 'Safey the Safish', 'Task_Type': input.taskType, 'Exact_Task': input.specificTask}
+      )
     })
   };
 
@@ -77,6 +84,11 @@ export default class App extends React.Component {
       riskLevel: input.riskLevel,
       specificRisk: input.specificRisk,
       question: 3,
+      questions: Object.assign(
+        {},
+        this.state.questions,
+        {'Risk_Level': input.riskLevel, 'Specific_Risk': input.specificRisk}
+      )
     })
   };
 
@@ -86,6 +98,11 @@ export default class App extends React.Component {
       whatConcernLevel: input.whatConcernLevel,
       specificConcerns: input.specificConcerns,
       question: 4,
+      questions: Object.assign(
+        {},
+        this.state.questions,
+        {'Potential_Injuries': input.whatConcernLevel, 'Specific_Concerns': input.specificConcerns}
+      )
     })
   };
 
@@ -94,8 +111,23 @@ export default class App extends React.Component {
       checkedControls: true,
       specificSafetyMeasures: input.specificSafetyMeasures,
       question: 5,
+      questions: Object.assign(
+        {},
+        this.state.questions,
+        {'Controls_Checked': true, 'Specific_Safety_Measures': input.specificSafetyMeasures}
+      )
     })
   };
+
+  sendToDatabase() {
+    console.log('sending info', this.state.questions);
+    fetch('https://32bbc661.ngrok.io/api/v1/workers/flras', {
+      method: 'POST',
+      body: JSON.stringify({ safeysForm: this.state.questions })
+    })
+    .then(data => data.json())
+  };
+
 
 
   render() {
@@ -154,7 +186,7 @@ export default class App extends React.Component {
           {
             this.state.question === 5 &&
             <Summary
-              submitLogin={ this.q4Submit }
+              submitLogin={ this.sendToDatabase }
               goBack={ this.goBack }
               info = { this.state }
               checkList={ this.state.checkList }/>

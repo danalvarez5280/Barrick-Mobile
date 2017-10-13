@@ -33,7 +33,8 @@ class Question3 extends Component {
     super();
     this.state = {
       potentialInjuries: props.info.potentialInjuries,
-      specificConcerns: props.info.specificConcerns
+      specificConcerns: props.info.specificConcerns,
+      whatConcernLevel: props.info.whatConcernLevel,
     }
     this.howConcerned = this.howConcerned.bind(this);
     this.whatConcernLevel = this.whatConcernLevel.bind(this);

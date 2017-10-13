@@ -53,6 +53,7 @@ class Summary extends Component {
 
   testFn() {
     console.log('hi dan');
+    this.props.submitLogin()
   };
 
   goBack() {
