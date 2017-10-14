@@ -16,8 +16,9 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SafetyBox from './SafetyBox';
+import ReviewCheck from './ReviewCheck';
 
-import risk1 from './assets/secure.png';
+import risk1 from './assets/shield.png';
 import risk2 from './assets/caution.png';
 import risk3 from './assets/siren.png';
 import risk4 from './assets/death.png';
@@ -43,50 +44,124 @@ import lightGold from './assets/light-gold.png';
 class Summary extends Component {
   constructor(props) {
     super();
-    console.log('props', props);
     this.state = {
       info: props.info,
     }
     this.goBack = this.goBack.bind(this);
     this.testFn = this.testFn.bind(this);
+    this.selectTaskType = this.selectTaskType.bind(this);
+    this.selectRiskLevel = this.selectRiskLevel.bind(this);
+    this.filledOutTask = this.filledOutTask.bind(this);
   };
 
   testFn() {
-    console.log('hi dan');
     this.props.submitLogin()
   };
+
+  selectTaskType() {
+    if(this.props.info.taskType === 'Electrical') {
+      return lightGold
+    }
+    else if( this.props.info.taskType === 'Transportation') {
+      return truckGold
+    }
+    else if( this.props.info.taskType === 'Maintenence') {
+      return wrenchGold
+    }
+  };
+
+  selectRiskLevel() {
+    if(this.props.info.riskLevel === 1) {
+      return risk1
+    }
+    else if( this.props.info.riskLevel === 2) {
+      return risk2
+    }
+    else if( this.props.info.riskLevel === 3) {
+      return risk3
+    }
+    else if( this.props.info.riskLevel === 4) {
+      return risk4
+    }
+    else if( this.props.info.riskLevel === 5) {
+      return risk5
+    }
+  };
+
+  selectConcern() {
+    if(this.props.info.riskLevel === 1) {
+      return risk1
+    }
+    else if( this.props.info.riskLevel === 2) {
+      return risk2
+    }
+    else if( this.props.info.riskLevel === 3) {
+      return risk3
+    }
+    else if( this.props.info.riskLevel === 4) {
+      return risk4
+    }
+    else if( this.props.info.riskLevel === 5) {
+      return risk5
+    }
+  };
+
+  filledOutTask() {
+    this.props.info.specificTask.length ? true : false
+  }
+
+  filledOutRisk() {
+    this.props.info.specificRisk.length ? true : false
+  }
+
+  filledOutConcern() {
+    this.props.info.specificConcern.length ? true : false
+  }
 
   goBack() {
     this.props.goBack(4);
   };
 
   render() {
-    let check = 'Bender Is Great';
-    let safetyChecks =
-      <SafetyBox
-        safeCheck={ check }
-        checked={ false } />
+    console.log('dan', this.state.info);
+    let taskIcon = this.selectTaskType();
+    let taskChecked = this.filledOutTask();
+    let riskIcon = this.selectRiskLevel();
+    let riskChecked = this.filledOutRisk();
+    let concernIcon = this.selectRiskLevel();
+    let concernChecked = this.filledOutRisk();
+
+    let taskCheck =
+      <ReviewCheck
+        info={this.state.info}
+        icon={ taskIcon }
+        checked={ this.filledOutTask }
+        safeCheck={ this.props.info.specificTask } />
+
+      let riskCheck =
+        <ReviewCheck
+          info={this.state.info}
+          icon={ riskIcon }
+          checked={ this.filledOutRisk }
+          safeCheck={ this.props.info.specificRisk } />
+
+      let concernCheck =
+      <ReviewCheck
+        info={this.state.info}
+        icon={ concernIcon }
+        checked={ this.filledOutConcern }
+        safeCheck={ this.props.info.specificRisk } />
     return(
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={ true }
         contentContainerStyle={ styles.display }>
         <View style={styles.question}>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Task Type:</Text>
-            <Image source={ lightGold } style={ styles.checkBox }/>
+          <View>
+            { taskCheck }
           </View>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Specific Task:</Text>
-            <Text style={ styles.white }>{ this.props.info.specificTask }</Text>
-          </View>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Risk Level:</Text>
-            <Image source={ risk1 } style={ styles.checkBox }/>
-          </View>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Specific Risk:</Text>
-            <Text style={ styles.white }>{ this.props.info.specificRisk }</Text>
+          <View>
+            {riskCheck }
           </View>
           <View style={ styles.blue }>
             <Text style={ styles.white }>Concerns:</Text>

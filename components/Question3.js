@@ -47,7 +47,6 @@ class Question3 extends Component {
   };
 
   handleSubmit() {
-    console.log('specificConcerns', this.state);
     this.props.submitLogin(this.state)
   };
 
@@ -75,6 +74,39 @@ class Question3 extends Component {
       return concern6
     }
   };
+
+  setConcernLevel(str) {
+    if(str === 'Minor Injuries') {
+      this.setState({
+        whatConcernLevel: 'Minor Injuries'
+      })
+    }
+    else if( str === 'Recordable Injuries') {
+      this.setState({
+        whatConcernLevel: 'Recordable Injuries'
+      })
+    }
+    else if( str === 'Reverisble Injuries') {
+      this.setState({
+        whatConcernLevel: 'Reverisble Injuries'
+      })
+    }
+    else if( str === 'Irreverisble Injuries') {
+      this.setState({
+        whatConcernLevel: 'Irreverisble Injuries'
+      })
+    }
+    else if( str === 'Single Fatality') {
+      this.setState({
+        whatConcernLevel: 'Single Fatality'
+      })
+    }
+    else if( str === 'Many Fatalities') {
+      this.setState({
+        whatConcernLevel: 'Many Fatalities'
+      })
+    }
+  }
 
   whatConcernLevel() {
     if(this.state.potentialInjuries === 1) {
@@ -136,12 +168,12 @@ class Question3 extends Component {
 };
 const styles = StyleSheet.create({
   display: {
+    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: 10,
+    justifyContent: 'space-between',
     padding: 0,
-    height: '100%',
+    height: 480,
     width: '100%',
   },
   input: {

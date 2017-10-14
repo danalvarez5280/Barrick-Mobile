@@ -29,11 +29,19 @@ class Question1 extends Component {
     super();
     this.state = {
       taskType: props.info.taskType,
-      specificTask: props.info.specificTask
+      specificTask: props.info.specificTask,
+      taskTypeId: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.noInfo = this.noInfo.bind(this);
     this.selectTaskType = this.selectTaskType.bind(this);
+    this.setTaskId = this.setTaskId.bind(this);
+    this.getElectricControls = this.getElectricControls.bind(this);
+    this.getTransportationControls = this.getTransportationControls.bind(this);
+    this.getMaintenanceControls = this.getMaintenanceControls.bind(this);
+    this.getElectricRisks = this.getElectricRisks.bind(this);
+    this.getTransportationRisks = this.getTransportationRisks.bind(this);
+    this.getMaintenanceRisks = this.getMaintenanceRisks.bind(this);
   }
 
   handleSubmit() {
@@ -48,26 +56,99 @@ class Question1 extends Component {
     this.setState({
       taskType: type,
     })
-
+    this.setTaskId(type)
     if(type === 'Electrical') {
-      this.setChecks(['Lock Out/ Tag Out', 'Locks'])
+      this.getElectricControls()
+      this.getElectricRisks()
     }
     else if( type === 'Transportation') {
-      this.setChecks(['Pre-Start Check', 'Seat Belts', 'Tires', 'Horn', 'Head Lights'])
+      this.getTransportationControls()
+      this.getTransportationRisks()
     }
-    else if( type === 'Maintenence') {
-      this.setChecks(['Safety Gear', 'Buddy System'])
+    else if( type === 'Maintenance') {
+      this.getMaintenanceControls()
+      this.getMaintenanceRisks()
+    }
+  };
+
+  getElectricControls() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/1/controls')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setChecks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  getElectricRisks() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/1/risks')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setRisks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  getTransportationControls() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/2/controls')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setChecks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  getTransportationRisks() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/2/risks')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setRisks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  getMaintenanceControls() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/3/controls')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setChecks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  getMaintenanceRisks() {
+    fetch('https://mitig8.herokuapp.com/api/v1/categories/3/risks')
+    .then((data) => data.json())
+    .then(array => array.map(control => control.body))
+    .then(array => this.setRisks(array))
+    .catch((error) => console.log('error1', error))
+  };
+
+  setTaskId(type) {
+    if(type === 'Electrical') {
+      this.setState({
+        taskTypeId: 1
+      })
+    }
+    else if( type === 'Transportation') {
+      this.setState({
+        taskTypeId: 2
+      })
+    }
+    else if( type === 'Maintenance') {
+      this.setState({
+        taskTypeId: 3
+      })
     }
   };
 
   setChecks(array) {
     this.props.setControls(array)
-  }
+  };
+
+  setRisks(array) {
+    this.props.setRisks(array)
+  };
 
   render() {
     const transportation = this.state.taskType === 'Transportation' ? truckGold : truck;
     const electrical = this.state.taskType === 'Electrical' ? lightGold : light;
-    const maintenence = this.state.taskType === 'Maintenence' ? wrenchGold : wrench;
+    const maintenence = this.state.taskType === 'Maintenance' ? wrenchGold : wrench;
     const submitButton =
       this.state.specificTask.length ?
         <Button style={ styles.yesSubmit } onPress={ this.handleSubmit } title='Submit'/> :
@@ -92,10 +173,10 @@ class Question1 extends Component {
               <Text style={styles.type}>Electrical</Text>
             </View>
             <View>
-              <TouchableHighlight onPress={ () => this.selectTaskType('Maintenence') }>
+              <TouchableHighlight onPress={ () => this.selectTaskType('Maintenance') }>
                 <Image source={ maintenence } style={styles.taskIcon}/>
               </TouchableHighlight>
-              <Text style={styles.type}>Maintenence</Text>
+              <Text style={styles.type}>Maintenance</Text>
             </View>
 
           </View>
@@ -116,19 +197,19 @@ const styles = StyleSheet.create({
   display: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: 15,
-    height: '100%',
+    justifyContent: 'space-between',
+    marginTop: 0,
+    height: 400,
     width: '100%',
   },
   input: {
     backgroundColor: '#CED5E0',
     color: '#122732',
     fontSize: 20,
-    height: 150,
+    height: 100,
     marginBottom: 10,
     padding: 5,
-    width: 250,
+    width: '80%',
   },
   prompt: {
     backgroundColor: '#C4900F',
@@ -136,7 +217,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 5,
     textAlign: 'center',
-    width: 250,
+    width: '80%',
   },
   question: {
     alignItems: 'center',
