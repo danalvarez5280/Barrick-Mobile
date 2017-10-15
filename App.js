@@ -29,13 +29,14 @@ export default class App extends React.Component {
       specificSafetyMeasures: '',
       specificTask: '',
       taskType: '',
-      whatConcernLevel:'',
+      whatConcernLevel:'Minor Injuries',
     }
     this.controlsChecked = this.controlsChecked.bind(this);
     this.risksChecked = this.risksChecked.bind(this);
     this.goBack = this.goBack.bind(this);
     this.setControls = this.setControls.bind(this);
     this.setRisks = this.setRisks.bind(this);
+    this.setConcerns = this.setConcerns.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
     this.q1Submit = this.q1Submit.bind(this);
     this.q2Submit = this.q2Submit.bind(this);
@@ -82,6 +83,12 @@ export default class App extends React.Component {
     })
   };
 
+  setConcerns(str) {
+    this.setState({
+      whatConcernLevel: str
+    })
+  };
+
   q1Submit(input) {
     this.setState({
       taskType: input.taskType,
@@ -93,7 +100,7 @@ export default class App extends React.Component {
         this.state.questions,
         {
           'WorkerId': this.state.employeeId,
-          'Supervisor': 1,
+          'Supervisor': 5,
           'Task_Type': input.taskType,
           'Exact_Task': input.specificTask,
           'Task_Type_Id': input.taskTypeId
@@ -143,13 +150,50 @@ export default class App extends React.Component {
     })
   };
 
+  logOut() {
+    this.setState({
+      checkList: [],
+      checkedControls: false,
+      checkedRisks: false,
+      employeeId: '',
+      loggedIn: false,
+      potentialInjuries: 1,
+      question: null,
+      questions: {},
+      riskLevel: 1,
+      risksList: [],
+      specificConcerns: '',
+      specificRisk: '',
+      specificSafetyMeasures: '',
+      specificTask: '',
+      taskType: '',
+      whatConcernLevel:'Minor Injuries',
+    })
+  }
+
   sendToDatabase() {
     console.log('sending info', this.state.questions);
-    fetch('https://mitig8.herokuapp.com/api/v1/workers/flras', {
-      method: 'POST',
-      body: JSON.stringify(this.state.questions)
+    this.setState({
+      checkList: [],
+      checkedControls: false,
+      checkedRisks: false,
+      potentialInjuries: 1,
+      question: 1,
+      questions: {},
+      riskLevel: 1,
+      risksList: [],
+      specificConcerns: '',
+      specificRisk: '',
+      specificSafetyMeasures: '',
+      specificTask: '',
+      taskType: '',
+      whatConcernLevel:'Minor Injuries',
     })
-    .then(data => data.json())
+    // fetch('https://mitig8.herokuapp.com/api/v1/workers/flras', {
+    //   method: 'POST',
+    //   body: JSON.stringify(this.state.questions)
+    // })
+    // .then(data => data.json())
   };
 
 
@@ -198,7 +242,8 @@ export default class App extends React.Component {
           {
             this.state.question === 3 &&
             <Question3
-              submitLogin={this.q3Submit}
+              submitLogin={ this.q3Submit }
+              setConcerns={ this.setConcerns }
               goBack={ this.goBack }
               info = { this.state }/>
           }
@@ -237,7 +282,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 500,
     justifyContent: 'center',
-    marginTop: -15 ,
+    marginTop: -10,
     padding: 0,
     width: '100%',
   },

@@ -108,14 +108,14 @@ class Question2 extends Component {
             value={ this.state.riskLevel }  />
           <Text>{ this.state.riskLevel }</Text>
           <Text style={ styles.prompt }>Specific Risks</Text>
-          { safetyChecks }
-          <Text style={ styles.prompt }>Other Risks</Text>
-          <TextInput
+            <TextInput
             style={ styles.input }
             multiline= { true }
             placeholder='Specific Risk'
             onChangeText={ (specificRisk) => this.setState({ specificRisk })}
             value={ this.state.specificRisk } />
+          <Text style={ styles.prompt }>Other Risks</Text>
+            { safetyChecks }
           <Button onPress={ this.handleSubmit } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
         </View>
@@ -125,10 +125,10 @@ class Question2 extends Component {
 };
 const styles = StyleSheet.create({
   display: {
-    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    marginTop: 0,
     padding: 0,
     height: 670,
     width: '100%',

@@ -88,10 +88,9 @@ class Question4 extends Component {
 };
 const styles = StyleSheet.create({
   display: {
-    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    height: 650,
+    height: 550,
     justifyContent: 'space-between',
     overflow: 'scroll',
     padding: 0,

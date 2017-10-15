@@ -31,9 +31,10 @@ import concern4 from './assets/injury4.png';
 import concern5 from './assets/injury5.png';
 import concern6 from './assets/injury6.png';
 
-import wrenchGold  from './assets/wrench-gold.png';
-import truckGold from './assets/truck-gold.png';
-import lightGold from './assets/light-gold.png';
+
+import wrench from './assets/wrench.png';
+import truck from './assets/truck.png';
+import light from './assets/light.png';
 
 
 //colors
@@ -60,17 +61,18 @@ class Summary extends Component {
 
   selectTaskType() {
     if(this.props.info.taskType === 'Electrical') {
-      return lightGold
+      return light
     }
     else if( this.props.info.taskType === 'Transportation') {
-      return truckGold
+      return truck
     }
-    else if( this.props.info.taskType === 'Maintenence') {
-      return wrenchGold
+    else if( this.props.info.taskType === 'Maintenance') {
+      return wrench
     }
   };
 
   selectRiskLevel() {
+    console.log('whatup', this.props.info.riskLevel);
     if(this.props.info.riskLevel === 1) {
       return risk1
     }
@@ -89,20 +91,23 @@ class Summary extends Component {
   };
 
   selectConcern() {
-    if(this.props.info.riskLevel === 1) {
-      return risk1
+    if(this.props.info.whatConcernLevel === 'Minor Injuries') {
+      return concern1
     }
-    else if( this.props.info.riskLevel === 2) {
-      return risk2
+    else if( this.props.info.whatConcernLevel === 'Recordable Injuries') {
+      return concern2
     }
-    else if( this.props.info.riskLevel === 3) {
-      return risk3
+    else if( this.props.info.whatConcernLevel === 'Reverisble Injuries') {
+      return concern3
     }
-    else if( this.props.info.riskLevel === 4) {
-      return risk4
+    else if( this.props.info.whatConcernLevel === 'Irreverisble Injuries') {
+      return concern4
     }
-    else if( this.props.info.riskLevel === 5) {
-      return risk5
+    else if( this.props.info.whatConcernLevel === 'Single Fatality') {
+      return concern5
+    }
+    else if( this.props.info.whatConcernLevel === 'Multiple Fatalities') {
+      return concern5
     }
   };
 
@@ -128,7 +133,7 @@ class Summary extends Component {
     let taskChecked = this.filledOutTask();
     let riskIcon = this.selectRiskLevel();
     let riskChecked = this.filledOutRisk();
-    let concernIcon = this.selectRiskLevel();
+    let concernIcon = this.selectConcern();
     let concernChecked = this.filledOutRisk();
 
     let taskCheck =
@@ -150,7 +155,7 @@ class Summary extends Component {
         info={this.state.info}
         icon={ concernIcon }
         checked={ this.filledOutConcern }
-        safeCheck={ this.props.info.specificRisk } />
+        safeCheck={ this.props.info.specificConcerns } />
     return(
       <KeyboardAwareScrollView
         resetScrollToCoords={{ x: 0, y: 0 }}
@@ -163,14 +168,8 @@ class Summary extends Component {
           <View>
             {riskCheck }
           </View>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Concerns:</Text>
-            <Image source={ concern1 } style={ styles.checkBox }/>
-            <Text style={ styles.white }>{ this.props.info.whatConcernLevel }</Text>
-          </View>
-          <View style={ styles.blue }>
-            <Text style={ styles.white }>Specific Concerns:</Text>
-            <Text style={ styles.white }>{ this.props.info.specificConcerns }</Text>
+          <View>
+            { concernCheck }
           </View>
           <View style={ styles.blue }>
             <Text style={ styles.white }>{ this.props.info.specificSafetyMeasures }</Text>
@@ -202,10 +201,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: 10,
+    justifyContent: 'space-between',
+    marginTop: 0,
     paddingBottom: 20,
-    height: '100%',
+    height: 550,
     width: '100%',
   },
   question: {
@@ -217,8 +216,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   white: {
-    color: '#122732',
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'bold',
     marginLeft: 20,
   },

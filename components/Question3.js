@@ -34,7 +34,7 @@ class Question3 extends Component {
     this.state = {
       potentialInjuries: props.info.potentialInjuries,
       specificConcerns: props.info.specificConcerns,
-      whatConcernLevel: props.info.whatConcernLevel,
+      whatConcern: props.info.whatConcernLevel,
     }
     this.howConcerned = this.howConcerned.bind(this);
     this.whatConcernLevel = this.whatConcernLevel.bind(this);
@@ -48,6 +48,7 @@ class Question3 extends Component {
 
   handleSubmit() {
     this.props.submitLogin(this.state)
+    this.props.setConcerns(this.state.whatConcern)
   };
 
   noInfo() {
@@ -76,62 +77,46 @@ class Question3 extends Component {
   };
 
   setConcernLevel(str) {
-    if(str === 'Minor Injuries') {
-      this.setState({
-        whatConcernLevel: 'Minor Injuries'
-      })
-    }
-    else if( str === 'Recordable Injuries') {
-      this.setState({
-        whatConcernLevel: 'Recordable Injuries'
-      })
-    }
-    else if( str === 'Reverisble Injuries') {
-      this.setState({
-        whatConcernLevel: 'Reverisble Injuries'
-      })
-    }
-    else if( str === 'Irreverisble Injuries') {
-      this.setState({
-        whatConcernLevel: 'Irreverisble Injuries'
-      })
-    }
-    else if( str === 'Single Fatality') {
-      this.setState({
-        whatConcernLevel: 'Single Fatality'
-      })
-    }
-    else if( str === 'Many Fatalities') {
-      this.setState({
-        whatConcernLevel: 'Many Fatalities'
-      })
-    }
+    this.props.setConcerns(str)
   }
 
   whatConcernLevel() {
+    this.howConcerned();
     if(this.state.potentialInjuries === 1) {
-      return 'Minor Injuries'
+      this.setState({
+        whatConcern: 'Minor Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 2) {
-      return 'Recordable Injuries'
+      this.setState({
+        whatConcern: 'Recordable Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 3) {
-      return 'Reverisble Injuries'
+      this.setState({
+        whatConcern: 'Reverisble Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 4) {
-      return 'Irreverisble Injuries'
+      this.setState({
+        whatConcern: 'Irreverisble Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 5) {
-      return 'Single Fatality'
+      this.setState({
+        whatConcern: 'Single Fatality'
+      })
     }
-    else {
-      return 'Many Fatalities'
+    else if (this.state.potentialInjuries === 6){
+      this.setState({
+        whatConcern: 'Many Fatalities'
+      })
     }
   };
 
   render() {
     let concern = this.howConcerned();
-    let concernLevel = this.whatConcernLevel();
+    let concernLevel = this.state.whatConcern;
 
     return(
       <KeyboardAwareScrollView
@@ -145,7 +130,7 @@ class Question3 extends Component {
             maximumTrackTintColor= 'green'
             minimumValue={ 1 }
             minimumTrackTintColor= 'red'
-            onSlidingComplete ={ () => this.howConcerned() }
+            onSlidingComplete ={ () => this.whatConcernLevel() }
             onValueChange={ (potentialInjuries) => this.setState({ potentialInjuries }) }
             step={ 1 }
             style={ styles.slider}

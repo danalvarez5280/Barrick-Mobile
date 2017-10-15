@@ -77,8 +77,8 @@ class ReviewCheck extends Component {
 
 const styles = StyleSheet.create({
   white: {
-    color: 'white',
-    fontSize: 12,
+    color: '#122732',
+    fontSize: 16,
     fontWeight: 'bold',
     marginLeft: 20,
   },
@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     display: 'flex',
     flexDirection: 'row',
-    height: 40,
+    height: 70,
     marginTop: 10,
     padding: 5,
-    width: 220,
+    width: 250,
   },
   gold: {
     alignItems: 'center',
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     width: 220,
   },
   checkBox: {
-    height: 24,
-    width: 24,
+    height: 40,
+    width: 40,
   }
 });
 
