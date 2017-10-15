@@ -53,11 +53,16 @@ class Summary extends Component {
     this.selectTaskType = this.selectTaskType.bind(this);
     this.selectRiskLevel = this.selectRiskLevel.bind(this);
     this.filledOutTask = this.filledOutTask.bind(this);
+    this.logOut = this.logOut.bind(this);
   };
 
   testFn() {
     this.props.submitLogin()
   };
+
+  logOut() {
+    this.props.logOut();
+  }
 
   selectTaskType() {
     if(this.props.info.taskType === 'Electrical') {
@@ -177,6 +182,7 @@ class Summary extends Component {
 
           <Button onPress={ this.testFn } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
+          <Button onPress={ this.logOut } title='LOG Out'/>
         </View>
       </KeyboardAwareScrollView>
     )
@@ -204,7 +210,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 0,
     paddingBottom: 20,
-    height: 550,
+    height: 650,
     width: '100%',
   },
   question: {

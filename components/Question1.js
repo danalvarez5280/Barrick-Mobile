@@ -36,6 +36,7 @@ class Question1 extends Component {
     this.noInfo = this.noInfo.bind(this);
     this.selectTaskType = this.selectTaskType.bind(this);
     this.setTaskId = this.setTaskId.bind(this);
+    this.logOut = this.logOut.bind(this);
     this.getElectricControls = this.getElectricControls.bind(this);
     this.getTransportationControls = this.getTransportationControls.bind(this);
     this.getMaintenanceControls = this.getMaintenanceControls.bind(this);
@@ -47,6 +48,10 @@ class Question1 extends Component {
   handleSubmit() {
     this.props.submitLogin(this.state)
   };
+
+  logOut() {
+    this.props.logOut();
+  }
 
   noInfo() {
     Alert.alert('You need to input an TASK TYPE  and SPECIFIC TASK')
@@ -188,6 +193,7 @@ class Question1 extends Component {
             onChangeText={ (specificTask) => this.setState({ specificTask })}
             value={ this.state.specificTask } />
           <Button onPress={ this.handleSubmit } title='SUBMIT'/>
+          <Button onPress={ this.logOut } title='LOG OUT'/>
         </View>
       </KeyboardAwareScrollView>
     )

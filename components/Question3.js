@@ -40,6 +40,7 @@ class Question3 extends Component {
     this.whatConcernLevel = this.whatConcernLevel.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.logOut = this.logOut.bind(this);
   };
 
   goBack() {
@@ -78,6 +79,10 @@ class Question3 extends Component {
 
   setConcernLevel(str) {
     this.props.setConcerns(str)
+  }
+
+  logOut() {
+    this.props.logOut();
   }
 
   whatConcernLevel() {
@@ -146,6 +151,7 @@ class Question3 extends Component {
             value={ this.state.specificConcerns } />
           <Button onPress={ this.handleSubmit } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
+          <Button onPress={ this.logOut } title='LOG OUT'/>
         </View>
       </KeyboardAwareScrollView>
     )

@@ -35,11 +35,16 @@ class Question4 extends Component {
     }
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.logOut = this.logOut.bind(this);
   };
 
   controlsChecked() {
     this.props.controlsChecked()
   };
+
+  logOut() {
+    this.props.logOut();
+  }
 
   goBack() {
     this.props.goBack(3);
@@ -81,6 +86,7 @@ class Question4 extends Component {
             value={ this.state.specificSafetyMeasures } />
           <Button onPress={ this.handleSubmit } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
+          <Button onPress={ this.logOut } title='LOG OUT'/>
         </View>
       </KeyboardAwareScrollView>
     )

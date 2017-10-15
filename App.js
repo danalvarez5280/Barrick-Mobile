@@ -34,6 +34,7 @@ export default class App extends React.Component {
     this.controlsChecked = this.controlsChecked.bind(this);
     this.risksChecked = this.risksChecked.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.logOut = this.logOut.bind(this);
     this.setControls = this.setControls.bind(this);
     this.setRisks = this.setRisks.bind(this);
     this.setConcerns = this.setConcerns.bind(this);
@@ -228,7 +229,8 @@ export default class App extends React.Component {
               submitLogin={ this.q1Submit }
               setControls={ this.setControls }
               setRisks={ this.setRisks }
-              info={ this.state } />
+              info={ this.state }
+              logOut={ this.logOut }/>
           }
           {
             this.state.question === 2 &&
@@ -236,8 +238,9 @@ export default class App extends React.Component {
               submitLogin={ this.q2Submit }
               goBack={ this.goBack }
               risksChecked={ this.risksChecked }
-              info = { this.state }
-              risksList={this.state.risksList}/>
+              info={ this.state }
+              risksList={ this.state.risksList }
+              logOut={ this.logOut }/>
           }
           {
             this.state.question === 3 &&
@@ -245,7 +248,8 @@ export default class App extends React.Component {
               submitLogin={ this.q3Submit }
               setConcerns={ this.setConcerns }
               goBack={ this.goBack }
-              info = { this.state }/>
+              info={ this.state }
+              logOut={ this.logOut }/>
           }
           {
             this.state.question === 4 &&
@@ -253,14 +257,16 @@ export default class App extends React.Component {
               submitLogin={ this.q4Submit }
               controlsChecked={ this.controlsChecked }
               goBack={ this.goBack }
-              info = { this.state }/>
+              info={ this.state }
+              logOut={ this.logOut }/>
           }
           {
             this.state.question === 5 &&
             <Summary
               submitLogin={ this.sendToDatabase }
               goBack={ this.goBack }
-              info = { this.state }/>
+              info={ this.state }
+              logOut={ this.logOut }/>
           }
         </View>
       </KeyboardAwareScrollView>
