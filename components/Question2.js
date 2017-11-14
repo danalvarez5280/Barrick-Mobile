@@ -19,9 +19,11 @@ import SafetyBox from './SafetyBox';
 
 import risk1 from './assets/shield.png';
 import risk2 from './assets/caution.png';
-import risk3 from './assets/siren.png';
-import risk4 from './assets/death.png';
-import risk5 from './assets/biohazard.png';
+import risk3 from './assets/yield.png';
+import risk4 from './assets/siren.png';
+import risk5 from './assets/flame.png';
+import risk6 from './assets/death.png';
+import risk7 from './assets/biohazard.png';
 
 
 //colors
@@ -79,8 +81,14 @@ class Question2 extends Component {
     else if(this.state.riskLevel === 4) {
       return risk4
     }
-    else {
+    else if(this.state.riskLevel === 5){
       return risk5
+    }
+    else if(this.state.riskLevel === 6){
+      return risk6
+    }
+    else if(this.state.riskLevel === 7){
+      return risk7
     }
   };
 
@@ -102,7 +110,7 @@ class Question2 extends Component {
           <Text style={ styles.prompt }>Select the Risk Level</Text>
           <Image source={ risk } style={styles.riskIcon}/>
           <Slider
-            maximumValue={ 5 }
+            maximumValue={ 7 }
             maximumTrackTintColor= 'green'
             minimumValue={ 1 }
             minimumTrackTintColor= 'red'

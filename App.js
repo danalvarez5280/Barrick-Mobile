@@ -9,7 +9,7 @@ import Summary from './components/Summary';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import logo from './components/assets/logo.png';
+import logo from './components/assets/barrick1.png';
 
 export default class App extends React.Component {
   constructor() {
@@ -190,11 +190,11 @@ export default class App extends React.Component {
       taskType: '',
       whatConcernLevel:'Minor Injuries',
     })
-    // fetch('https://mitig8.herokuapp.com/api/v1/workers/flras', {
-    //   method: 'POST',
-    //   body: JSON.stringify(this.state.questions)
-    // })
-    // .then(data => data.json())
+    fetch('https://mitig8.herokuapp.com/api/v1/workers/flras', {
+      method: 'POST',
+      body: JSON.stringify(this.state.questions)
+    })
+    .then(data => data.json())
   };
 
 
@@ -207,13 +207,13 @@ export default class App extends React.Component {
         <View style={ styles.container }>
         <StatusBar barStyle='light-content'/>
           <View style={styles.header}>
-            <Image source={logo} style={ styles.logo }/>
+            <Image source={ logo } style={ styles.logo }/>
             <View>
             {
               this.state.loggedIn &&
               <View>
                 <Text style={ styles.gold }>{ this.state.employeeId }</Text>
-                <Text style={ styles.gold }>Salt Lake City, UT</Text>
+                <Text style={ styles.gold }>Denver, CO</Text>
               </View>
             }
             </View>
@@ -221,7 +221,8 @@ export default class App extends React.Component {
           {
             !this.state.loggedIn &&
             <Login
-              submitLogin={ this.submitLogin } />
+              submitLogin={ this.submitLogin }
+              />
           }
           {
             this.state.question === 1 &&
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   gold: {
-    color: '#C4900F',
+    color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 10,
     marginBottom: 5,

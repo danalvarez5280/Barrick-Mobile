@@ -20,9 +20,11 @@ import ReviewCheck from './ReviewCheck';
 
 import risk1 from './assets/shield.png';
 import risk2 from './assets/caution.png';
-import risk3 from './assets/siren.png';
-import risk4 from './assets/death.png';
-import risk5 from './assets/biohazard.png';
+import risk3 from './assets/yield.png';
+import risk4 from './assets/siren.png';
+import risk5 from './assets/flame.png';
+import risk6 from './assets/death.png';
+import risk7 from './assets/biohazard.png';
 
 import concern1 from './assets/injury1.png';
 import concern2 from './assets/injury2.png';
@@ -92,6 +94,12 @@ class Summary extends Component {
     }
     else if( this.props.info.riskLevel === 5) {
       return risk5
+    }
+    else if( this.props.info.riskLevel === 6) {
+      return risk6
+    }
+    else if( this.props.info.riskLevel === 7) {
+      return risk7
     }
   };
 
@@ -182,7 +190,7 @@ class Summary extends Component {
 
           <Button onPress={ this.testFn } title='SUBMIT'/>
           <Button onPress={ this.goBack } title='BACK'/>
-          <Button onPress={ this.logOut } title='LOG Out'/>
+          <Button onPress={ this.logOut } title='LOG OUT'/>
         </View>
       </KeyboardAwareScrollView>
     )

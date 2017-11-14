@@ -88,7 +88,7 @@ class Login extends Component {
               secureTextEntry={ true }
               value={ passy } />
             <View style={ styles.buttons }>
-              {submitButton}
+              { submitButton }
               <Button onPress={ this.clearInfo } title='CLEAR'/>
             </View>
         </View>
