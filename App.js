@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, AppRegistry, Image } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, ScrollView, AppRegistry, Image } from 'react-native';
 import Login from './components/Login';
 import Question1 from './components/Question1';
 import Question2 from './components/Question2';
@@ -17,21 +17,26 @@ export default class App extends React.Component {
     this.state = {
       checkList: [],
       checkedControls: false,
+      checkedRisks: false,
       employeeId: '',
       loggedIn: false,
       potentialInjuries: 1,
       questions: {},
       riskLevel: 1,
+      risksList: [],
       specificConcerns: '',
       specificRisk: '',
       specificSafetyMeasures: '',
       specificTask: '',
       taskType: '',
-      whatConcernLevel:'',
+      whatConcernLevel:'Minor Injuries',
     }
     this.controlsChecked = this.controlsChecked.bind(this);
+    this.risksChecked = this.risksChecked.bind(this);
     this.goBack = this.goBack.bind(this);
     this.setControls = this.setControls.bind(this);
+    this.setRisks = this.setRisks.bind(this);
+    this.setConcerns = this.setConcerns.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
     this.q1Submit = this.q1Submit.bind(this);
     this.q2Submit = this.q2Submit.bind(this);
@@ -44,7 +49,13 @@ export default class App extends React.Component {
     this.setState({
       checkedControls: true,
     })
-  }
+  };
+
+  risksChecked(){
+    this.setState({
+      checkedRisks: true,
+    })
+  };
 
   goBack(num) {
     this.setState({
@@ -66,21 +77,41 @@ export default class App extends React.Component {
     })
   };
 
+  setRisks(array) {
+    this.setState({
+      risksList: array
+    })
+  };
+
+  setConcerns(str) {
+    this.setState({
+      whatConcernLevel: str
+    })
+  };
+
   q1Submit(input) {
     this.setState({
       taskType: input.taskType,
       specificTask: input.specificTask,
+      taskTypeId: input.taskTypeId,
       question: 2,
       questions: Object.assign(
         {},
         this.state.questions,
-        {'WorkerId': this.state.employeeId, 'Supervisor': 'Safey the Safish', 'Task_Type': input.taskType, 'Exact_Task': input.specificTask}
+        {
+          'WorkerId': this.state.employeeId,
+          'Supervisor': 5,
+          'Task_Type': input.taskType,
+          'Exact_Task': input.specificTask,
+          'Task_Type_Id': input.taskTypeId
+        }
       )
     })
   };
 
   q2Submit(input) {
     this.setState({
+      checkedRisks: true,
       riskLevel: input.riskLevel,
       specificRisk: input.specificRisk,
       question: 3,
@@ -119,13 +150,50 @@ export default class App extends React.Component {
     })
   };
 
+  logOut() {
+    this.setState({
+      checkList: [],
+      checkedControls: false,
+      checkedRisks: false,
+      employeeId: '',
+      loggedIn: false,
+      potentialInjuries: 1,
+      question: null,
+      questions: {},
+      riskLevel: 1,
+      risksList: [],
+      specificConcerns: '',
+      specificRisk: '',
+      specificSafetyMeasures: '',
+      specificTask: '',
+      taskType: '',
+      whatConcernLevel:'Minor Injuries',
+    })
+  }
+
   sendToDatabase() {
     console.log('sending info', this.state.questions);
-    fetch('https://32bbc661.ngrok.io/api/v1/workers/flras', {
-      method: 'POST',
-      body: JSON.stringify({ safeysForm: this.state.questions })
+    this.setState({
+      checkList: [],
+      checkedControls: false,
+      checkedRisks: false,
+      potentialInjuries: 1,
+      question: 1,
+      questions: {},
+      riskLevel: 1,
+      risksList: [],
+      specificConcerns: '',
+      specificRisk: '',
+      specificSafetyMeasures: '',
+      specificTask: '',
+      taskType: '',
+      whatConcernLevel:'Minor Injuries',
     })
-    .then(data => data.json())
+    // fetch('https://mitig8.herokuapp.com/api/v1/workers/flras', {
+    //   method: 'POST',
+    //   body: JSON.stringify(this.state.questions)
+    // })
+    // .then(data => data.json())
   };
 
 
@@ -159,6 +227,7 @@ export default class App extends React.Component {
             <Question1
               submitLogin={ this.q1Submit }
               setControls={ this.setControls }
+              setRisks={ this.setRisks }
               info={ this.state } />
           }
           {
@@ -166,12 +235,15 @@ export default class App extends React.Component {
             <Question2
               submitLogin={ this.q2Submit }
               goBack={ this.goBack }
-              info = { this.state }/>
+              risksChecked={ this.risksChecked }
+              info = { this.state }
+              risksList={this.state.risksList}/>
           }
           {
             this.state.question === 3 &&
             <Question3
-              submitLogin={this.q3Submit}
+              submitLogin={ this.q3Submit }
+              setConcerns={ this.setConcerns }
               goBack={ this.goBack }
               info = { this.state }/>
           }
@@ -188,8 +260,7 @@ export default class App extends React.Component {
             <Summary
               submitLogin={ this.sendToDatabase }
               goBack={ this.goBack }
-              info = { this.state }
-              checkList={ this.state.checkList }/>
+              info = { this.state }/>
           }
         </View>
       </KeyboardAwareScrollView>
@@ -206,11 +277,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   display: {
+    alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
-    height: '100%',
+    height: 500,
     justifyContent: 'center',
-    marginTop: -15 ,
+    marginTop: -10,
     padding: 0,
     width: '100%',
   },
@@ -225,7 +297,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#122732',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    marginTop: 10,
     paddingTop: 30,
     paddingBottom: 10,
     paddingLeft: 10,

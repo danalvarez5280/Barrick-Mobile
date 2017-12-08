@@ -4,6 +4,7 @@ import {
   Button,
   Image,
   Keyboard,
+  ScrollView,
   Slider,
   StatusBar,
   StyleSheet,
@@ -27,7 +28,6 @@ import SafetyBox from './SafetyBox';
 class Question4 extends Component {
   constructor(props) {
     super();
-    console.log('props', props);
     this.state = {
       checkedControls: props.info.checkedControls,
       specificSafetyMeasures: props.info.specificSafetyMeasures,
@@ -69,9 +69,9 @@ class Question4 extends Component {
         contentContainerStyle={ styles.display }>
         <View style={ styles.question }>
           <Text style={ styles.prompt }>Safety Measure Checklist</Text>
-          <View style={ styles.list }>
+          <ScrollView contentContainerStyle={ styles.list }>
           { safetyChecks }
-          </View>
+          </ScrollView>
           <Text style={ styles.prompt }>Specific Safety Measures</Text>
           <TextInput
             style={ styles.input }
@@ -90,10 +90,10 @@ const styles = StyleSheet.create({
   display: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: 10,
+    height: 550,
+    justifyContent: 'space-between',
+    overflow: 'scroll',
     padding: 0,
-    height: '100%',
     width: '100%',
   },
   input: {
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     margin: 10,
+    overflow:'scroll'
   },
   question: {
     alignItems: 'center',

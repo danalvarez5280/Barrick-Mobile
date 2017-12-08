@@ -19,12 +19,14 @@ class Login extends Component {
   constructor(){
     super();
     this.state = {
-      employee: ''
+      employee: '',
+      password: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.noInfo = this.noInfo.bind(this);
     this.clearInfo = this.clearInfo.bind(this);
     this.scrollToInput = this.scrollToInput.bind(this);
+    this.passwordHide = this.passwordHide.bind(this);
   };
 
   handleSubmit() {
@@ -43,11 +45,21 @@ class Login extends Component {
   };
 
   scrollToInput (reactNode: any) {
-  this.refs.scroll.scrollToFocusedInput(reactNode)
-}
+    this.refs.scroll.scrollToFocusedInput(reactNode)
+  };
+
+  passwordHide() {
+    if(this.state.password.length > 0){
+      let pass = [...this.state.password];
+      let hide = pass.map(letter => '*').join('')
+      return hide
+    }
+  };
+
+
 
   render() {
-
+    let passy = this.passwordHide()
     const mockButton = <Button onPress={ this.handleSubmit } title='MOCK'/>;
 
     const submitButton =
@@ -74,7 +86,7 @@ class Login extends Component {
               placeholder='Password'
               onChangeText={ (password) => this.setState({ password })}
               secureTextEntry={ true }
-              value={ this.state.password } />
+              value={ passy } />
             <View style={ styles.buttons }>
               {submitButton}
               <Button onPress={ this.clearInfo } title='CLEAR'/>
@@ -94,9 +106,10 @@ const styles = StyleSheet.create({
   display: {
     display: 'flex',
     flexDirection: 'column',
+    height: '100%',
     justifyContent: 'center',
     marginTop: 15,
-    height: '100%',
+    overflow: 'scroll',
     width: '100%',
   },
   input: {

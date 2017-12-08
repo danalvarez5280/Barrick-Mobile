@@ -34,7 +34,7 @@ class Question3 extends Component {
     this.state = {
       potentialInjuries: props.info.potentialInjuries,
       specificConcerns: props.info.specificConcerns,
-      whatConcernLevel: props.info.whatConcernLevel,
+      whatConcern: props.info.whatConcernLevel,
     }
     this.howConcerned = this.howConcerned.bind(this);
     this.whatConcernLevel = this.whatConcernLevel.bind(this);
@@ -47,8 +47,8 @@ class Question3 extends Component {
   };
 
   handleSubmit() {
-    console.log('specificConcerns', this.state);
     this.props.submitLogin(this.state)
+    this.props.setConcerns(this.state.whatConcern)
   };
 
   noInfo() {
@@ -76,30 +76,47 @@ class Question3 extends Component {
     }
   };
 
+  setConcernLevel(str) {
+    this.props.setConcerns(str)
+  }
+
   whatConcernLevel() {
+    this.howConcerned();
     if(this.state.potentialInjuries === 1) {
-      return 'Minor Injuries'
+      this.setState({
+        whatConcern: 'Minor Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 2) {
-      return 'Recordable Injuries'
+      this.setState({
+        whatConcern: 'Recordable Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 3) {
-      return 'Reverisble Injuries'
+      this.setState({
+        whatConcern: 'Reverisble Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 4) {
-      return 'Irreverisble Injuries'
+      this.setState({
+        whatConcern: 'Irreverisble Injuries'
+      })
     }
     else if(this.state.potentialInjuries === 5) {
-      return 'Single Fatality'
+      this.setState({
+        whatConcern: 'Single Fatality'
+      })
     }
-    else {
-      return 'Many Fatalities'
+    else if (this.state.potentialInjuries === 6){
+      this.setState({
+        whatConcern: 'Many Fatalities'
+      })
     }
   };
 
   render() {
     let concern = this.howConcerned();
-    let concernLevel = this.whatConcernLevel();
+    let concernLevel = this.state.whatConcern;
 
     return(
       <KeyboardAwareScrollView
@@ -113,7 +130,7 @@ class Question3 extends Component {
             maximumTrackTintColor= 'green'
             minimumValue={ 1 }
             minimumTrackTintColor= 'red'
-            onSlidingComplete ={ () => this.howConcerned() }
+            onSlidingComplete ={ () => this.whatConcernLevel() }
             onValueChange={ (potentialInjuries) => this.setState({ potentialInjuries }) }
             step={ 1 }
             style={ styles.slider}
@@ -136,12 +153,12 @@ class Question3 extends Component {
 };
 const styles = StyleSheet.create({
   display: {
+    alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    marginTop: 10,
+    justifyContent: 'space-between',
     padding: 0,
-    height: '100%',
+    height: 480,
     width: '100%',
   },
   input: {
