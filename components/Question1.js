@@ -77,51 +77,51 @@ class Question1 extends Component {
   };
 
   getElectricControls() {
-    fetch('https://mitig8.herokuapp.com/api/v1/categories/1/controls')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setChecks(array))
-    .catch((error) => console.log('error1', error))
+    return fetch('https://mitig8.herokuapp.com/api/v1/categories/1/controls')
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.props.setControls(array))
+      .catch((error) => console.log('error1', error))
   };
 
   getElectricRisks() {
-    fetch('https://mitig8.herokuapp.com/api/v1/categories/1/risks')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setRisks(array))
-    .catch((error) => console.log('error1', error))
+    return fetch('https://mitig8.herokuapp.com/api/v1/categories/1/risks')
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.setRisks(array))
+      .catch((error) => console.log('error1', error))
   };
 
   getTransportationControls() {
     fetch('https://mitig8.herokuapp.com/api/v1/categories/2/controls')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setChecks(array))
-    .catch((error) => console.log('error1', error))
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.setChecks(array))
+      .catch((error) => console.log('error1', error))
   };
 
   getTransportationRisks() {
     fetch('https://mitig8.herokuapp.com/api/v1/categories/2/risks')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setRisks(array))
-    .catch((error) => console.log('error1', error))
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.setRisks(array))
+      .catch((error) => console.log('error1', error))
   };
 
   getMaintenanceControls() {
     fetch('https://mitig8.herokuapp.com/api/v1/categories/3/controls')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setChecks(array))
-    .catch((error) => console.log('error1', error))
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.setChecks(array))
+      .catch((error) => console.log('error1', error))
   };
 
   getMaintenanceRisks() {
     fetch('https://mitig8.herokuapp.com/api/v1/categories/3/risks')
-    .then((data) => data.json())
-    .then(array => array.map(control => control.body))
-    .then(array => this.setRisks(array))
-    .catch((error) => console.log('error1', error))
+      .then((data) => data.json())
+      .then(array => array.map(control => control.body))
+      .then(array => this.setRisks(array))
+      .catch((error) => console.log('error1', error))
   };
 
   setTaskId(type) {

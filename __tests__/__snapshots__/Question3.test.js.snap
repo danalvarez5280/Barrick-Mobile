@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTScrollView
+  automaticallyAdjustContentInsets={false}
+  contentContainerStyle={
+    Object {
+      "alignItems": "flex-start",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 480,
+      "justifyContent": "space-between",
+      "padding": 0,
+      "width": "100%",
+    }
+  }
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+  enableAutoAutomaticScroll={true}
+  enableResetScrollToCoords={true}
+  extraHeight={75}
+  extraScrollHeight={0}
+  keyboardDismissMode="interactive"
+  keyboardOpeningTime={250}
+  onScroll={[Function]}
+  scrollEnabled={true}
+  scrollEventThrottle={0}
+  showsVerticalScrollIndicator={true}
+>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "marginTop": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "#C4900F",
+            "color": "#122732",
+            "fontWeight": "bold",
+            "padding": 5,
+            "textAlign": "center",
+            "width": 250,
+          }
+        }
+      >
+        CONCERNS
+      </Text>
+      <Image
+        source={
+          Object {
+            "testUri": "../../../components/assets/injury1.png",
+          }
+        }
+        style={
+          Object {
+            "height": 80,
+            "margin": 15,
+            "width": 80,
+          }
+        }
+      />
+      <RCTSlider
+        disabled={false}
+        enabled={true}
+        maximumTrackTintColor="green"
+        maximumValue={6}
+        minimumTrackTintColor="red"
+        minimumValue={1}
+        onChange={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onSlidingComplete={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onValueChange={[Function]}
+        step={1}
+        style={
+          Array [
+            Object {
+              "height": 40,
+            },
+            Object {
+              "width": 200,
+            },
+          ]
+        }
+        value={1}
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        1
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "#C4900F",
+            "color": "#122732",
+            "fontWeight": "bold",
+            "padding": 5,
+            "textAlign": "center",
+            "width": 250,
+          }
+        }
+      >
+        Specific Concerns
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Specific Concerns"
+        style={
+          Object {
+            "backgroundColor": "#CED5E0",
+            "color": "#122732",
+            "fontSize": 20,
+            "height": 100,
+            "marginBottom": 10,
+            "padding": 5,
+            "width": 250,
+          }
+        }
+        value="I could stub my toe"
+      />
+      <View
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            SUBMIT
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            BACK
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            LOG OUT
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

@@ -52,10 +52,6 @@ class Question3 extends Component {
     this.props.setConcerns(this.state.whatConcern)
   };
 
-  noInfo() {
-    Alert.alert('You need to input a SPECIFIC TASK')
-  };
-
   howConcerned() {
     if(this.state.potentialInjuries === 1) {
       return concern1

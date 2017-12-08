@@ -1,0 +1,403 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTScrollView
+  automaticallyAdjustContentInsets={false}
+  contentContainerStyle={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 400,
+      "justifyContent": "space-between",
+      "marginTop": 0,
+      "width": "100%",
+    }
+  }
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+  enableAutoAutomaticScroll={true}
+  enableResetScrollToCoords={true}
+  extraHeight={75}
+  extraScrollHeight={0}
+  keyboardDismissMode="interactive"
+  keyboardOpeningTime={250}
+  onScroll={[Function]}
+  scrollEnabled={true}
+  scrollEventThrottle={0}
+  showsVerticalScrollIndicator={true}
+>
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "#C4900F",
+            "color": "#122732",
+            "fontWeight": "bold",
+            "padding": 5,
+            "textAlign": "center",
+            "width": "80%",
+          }
+        }
+      >
+        Select the Type of Task
+      </Text>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "flexDirection": "row",
+            "justifyContent": "space-around",
+            "marginBottom": 10,
+          }
+        }
+      >
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../components/assets/truck.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 80,
+                  "margin": 15,
+                  "width": 80,
+                }
+              }
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#122732",
+                "display": "flex",
+                "fontSize": 10,
+                "fontWeight": "bold",
+                "justifyContent": "center",
+                "textAlign": "center",
+              }
+            }
+          >
+            Transportation
+          </Text>
+        </View>
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../components/assets/light.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 80,
+                  "margin": 15,
+                  "width": 80,
+                }
+              }
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#122732",
+                "display": "flex",
+                "fontSize": 10,
+                "fontWeight": "bold",
+                "justifyContent": "center",
+                "textAlign": "center",
+              }
+            }
+          >
+            Electrical
+          </Text>
+        </View>
+        <View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../components/assets/wrench.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 80,
+                  "margin": 15,
+                  "width": 80,
+                }
+              }
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#122732",
+                "display": "flex",
+                "fontSize": 10,
+                "fontWeight": "bold",
+                "justifyContent": "center",
+                "textAlign": "center",
+              }
+            }
+          >
+            Maintenance
+          </Text>
+        </View>
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "#C4900F",
+            "color": "#122732",
+            "fontWeight": "bold",
+            "padding": 5,
+            "textAlign": "center",
+            "width": "80%",
+          }
+        }
+      >
+        Specific Task
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Specific Task"
+        style={
+          Object {
+            "backgroundColor": "#CED5E0",
+            "color": "#122732",
+            "fontSize": 20,
+            "height": 100,
+            "marginBottom": 10,
+            "padding": 5,
+            "width": "80%",
+          }
+        }
+        value="Electrical"
+      />
+      <View
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            SUBMIT
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType="button"
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {},
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={undefined}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 18,
+                  "padding": 8,
+                  "textAlign": "center",
+                },
+              ]
+            }
+          >
+            LOG OUT
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
